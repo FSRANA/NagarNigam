@@ -5,7 +5,7 @@ const Location = () => {
     const userData = useSelector((state) => state.user.userData);
     return (
         <View style={{ alignContent:'center', paddingVertical:10, backgroundColor:'#eee' }}>
-            <Text style={{ textAlign:'center', color:'dodgerblue' }}>
+            <Text style={{ textAlign:'center', color:'black' }}>
                 {userData.location.name ?? ''}
             </Text>
         </View>

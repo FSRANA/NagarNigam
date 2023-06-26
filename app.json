@@ -4,14 +4,13 @@
     "web": {
       "bundler": "metro"
     },
-    "name": "Scanner",
-    "slug": "rfid-scanner-karnal-1",
+    "name": "NagarNigam",
+    "slug": "NagarNigam",
     "splash": {
       "image": "./assets/images/splash.png",
       "backgroundColor": "#fff",
       "resizeMode": "contain"
     },
-    "icon": "./assets/images/rfid.png"
-    
+    "icon": "./assets/images/rfid.png" 
   }
 }

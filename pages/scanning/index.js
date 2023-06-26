@@ -4,6 +4,7 @@ import Ionicons from '@expo/vector-icons/Ionicons';
 import { Image } from 'react-native';
 import {useRouter}  from 'expo-router';
 import { useSelector, useDispatch } from 'react-redux';
+import LogoutComponent  from '../../shared/logout';
 
 import * as MyLocation from 'expo-location';
 
@@ -149,7 +150,7 @@ const ScanningScreen = () => {
 
     return (
         <View style={{ flex:1 }}>
-            <View style={{ height:100, backgroundColor:"dodgerblue" }}>
+            <View style={{ height:100, backgroundColor:"#04574B" }}>
                 <View style={{ height:45, }}></View>
                 <View style={{ flex:1, flexDirection:'row' }}>
                     <View style={{ flex:0.15}}>
@@ -165,13 +166,7 @@ const ScanningScreen = () => {
                         </Text>
                     </View>
                     <View style={{ flex:0.2, alignItems:'flex-end' }}>
-                        <TouchableOpacity onPress={attemptLogout} style={{ padding:15 }}>
-                            <Ionicons name="log-out-outline" size={25} color="orange" />
-                            {/* <Image 
-                                source={require('../../assets/images/user.png')}
-                                style={{ width:30,height:30, borderWidth:2, borderColor:"#fff", borderRadius:30 }}
-                            /> */}
-                        </TouchableOpacity>
+                          <LogoutComponent/>
                     </View>
                 </View>
             </View>

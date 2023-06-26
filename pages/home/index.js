@@ -6,11 +6,9 @@ import { Image } from 'react-native';
 import { useRouter } from 'expo-router';
 import { useSelector, useDispatch } from 'react-redux';
 import moment from 'moment';
-
-import Location from '../../shared/location'
-
+import Location from '../../shared/location';
+import LogoutComponent  from '../../shared/logout';
 import API, { setClientToken } from '../../shared/api';
-
 
 
 const Home = () => {
@@ -30,12 +28,6 @@ const Home = () => {
     const currentDate = moment().format('DD-MM-YY');
 
     const [showdateSelected, setshowdateSelected] = useState(currentDate);
-    const attemptLogout = async () => {
-        dispatch({ type: 'user/setUserData', payload: "" });
-        dispatch({ type: 'user/setToken', payload: "" });
-
-        router.push(`/`);
-    }
 
     const handleConfirm = (date) => {
         console.log(date.toISOString().split('T')[0]);
@@ -183,7 +175,7 @@ const Home = () => {
 
     const Item = ({ row }) => (
         <View style={{
-            backgroundColor: '#fff',
+            backgroundColor: '#04574B',
             padding: 8,
             marginTop: 10,
             marginHorizontal: 10,
@@ -197,19 +189,19 @@ const Home = () => {
                 {getCurrentDateTime(row.created_at)}
             </Text>
             <Text style={{ fontSize: 15, fontWeight: 'bold' }}>
-                <Ionicons name="md-bookmark" size={14} color="dodgerblue" />
+                <Ionicons name="md-bookmark" size={14} color="#04574B" />
                 &nbsp;
                 {row.rfid} id = {row.id}
 
             </Text>
             <Text style={{ fontSize: 15, marginTop: 5, marginBottom: 5 }}>
-                <Ionicons name="list" size={14} color="dodgerblue" />
+                <Ionicons name="list" size={14} color="#04574B" />
                 &nbsp;
                 title
 
             </Text>
             <Text>
-                <Ionicons name="md-location-outline" size={14} color="dodgerblue" />
+                <Ionicons name="md-location-outline" size={14} color="#04574B" />
                 &nbsp;
                 {row.latitude} / {row.longitude}
             </Text>
@@ -238,7 +230,7 @@ const Home = () => {
 
     return (
         <><View style={{ flex: 1 }}>
-            <View style={{ height: 100, backgroundColor: "#007bff" }}>
+            <View style={{ height: 100, backgroundColor: "#04574B" }}>
                 <View style={{ height: 45, }}></View>
                 <View style={{ flex: 1, flexDirection: 'row' }}>
 
@@ -250,13 +242,7 @@ const Home = () => {
                         </Text>
                     </View>
                     <View style={{ flex: 0.2, alignItems: 'flex-end' }}>
-                        <TouchableOpacity onPress={attemptLogout} style={{ padding: 15 }}>
-                            <Ionicons name="log-out-outline" size={25} color="orange" />
-                            {/* <Image
-        source={require('../../assets/images/user.png')}
-        style={{ width:30,height:30, borderWidth:2, borderColor:"#fff", borderRadius:30 }}
-    /> */}
-                        </TouchableOpacity>
+                    <LogoutComponent/>
                     </View>
                 </View>
             </View>
@@ -267,7 +253,7 @@ const Home = () => {
                 <View style={{ flex: 1, flexDirection: 'row', paddingVertical: 15 }}>
                     <View style={{ flex: 0.5, marginLeft: 10, paddingHorizontal: 5 }}>
                         <View style={{ padding: 20, borderRadius: 10, backgroundColor: "#fff" }}>
-                            <Text style={{ fontWeight: 'bold', fontSize: 20, color: "dodgerblue" }}>
+                            <Text style={{ fontWeight: 'bold', fontSize: 20, color: "#04574B" }}>
                                 <Ionicons name="pricetags" size={20} color="lightblue" />
                                 &nbsp;
                                 {myTotal}
@@ -281,7 +267,7 @@ const Home = () => {
                     </View>
                     <View style={{ flex: 0.5, marginRight: 10, paddingHorizontal: 5 }}>
                         <View style={{ padding: 20, borderRadius: 10, backgroundColor: "#fff" }}>
-                            <Text style={{ fontWeight: 'bold', fontSize: 20, color: "dodgerblue" }}>
+                            <Text style={{ fontWeight: 'bold', fontSize: 20, color: "#04574B" }}>
                                 <Ionicons name="pricetags" size={20} color="lightblue" />
                                 &nbsp;
                                 {myTodayTotal}
@@ -296,7 +282,7 @@ const Home = () => {
                 </View>
 
                 <View style={{ flex: 1, flexDirection: 'column', paddingHorizontal: 15, }}>
-                    <TouchableOpacity onPress={() => { router.push(`/scanning`); }} style={{ backgroundColor: 'dodgerblue', padding: 10, alignItems: 'center', borderRadius: 100 }}>
+                    <TouchableOpacity onPress={() => { router.push(`/scanning`); }} style={{ backgroundColor: '#04574B', padding: 10, alignItems: 'center', borderRadius: 100 }}>
                         <Text style={{ color: '#fff', fontWeight: 'bold' }}>
                             Start Scanning
                         </Text>
@@ -305,14 +291,14 @@ const Home = () => {
                 <View style={{ paddingVertical: 15, marginTop: 15 }}>
                     <View style={{ flex: 1, paddingHorizontal: 10, flexDirection: 'row', borderTopColor: '#eee', marginTop: -15, borderTopWidth: 1, paddingTop: 10 }}>
                         <View style={{ flex: 0.75 }}>
-                            <Text style={{ fontWeight: 'bold', color: 'dodgerblue', flex: 1, marginHorizontal: 0 }}>
+                            <Text style={{ fontWeight: 'bold', color: '#04574B', flex: 1, marginHorizontal: 0 }}>
                                 My Installed Tags
                             </Text>
                         </View>
                         <View style={{ flex: 0.25 }}>
                             <TouchableOpacity onPress={() => setDatePickerVisibility(true)}>
                                 <Text style={{ fontWeight: 'bold', color: '#888', flex: 1, marginHorizontal: 0 }}>
-                                    <Ionicons name="md-calendar-outline" size={22} color="dodgerblue" />  {showdateSelected}
+                                    <Ionicons name="md-calendar-outline" size={22} color="#04574B" />  {showdateSelected}
                                 </Text>
                             </TouchableOpacity>
                             <DateTimePickerModal
@@ -324,7 +310,7 @@ const Home = () => {
 
                         </View>
                         {/* <View style={{ flex: 0.15 }}>
-                            <TouchableOpacity onPress={RefreshList} style={{ flex: 1, justifyContent: 'center', alignItems: 'center', borderRadius: 50, backgroundColor: 'dodgerblue' }}>
+                            <TouchableOpacity onPress={RefreshList} style={{ flex: 1, justifyContent: 'center', alignItems: 'center', borderRadius: 50, backgroundColor: '#04574B' }}>
                                 <Ionicons name="md-refresh-outline" size={20} color="#fff" />
                             </TouchableOpacity>
                         </View> */}
@@ -336,7 +322,7 @@ const Home = () => {
                 <View style={{ height: 450, backgroundColor: "#eee" }}>
                     {isListLoading ?
                         (
-                            <Text style={{ marginVertical: 20, alignSelf: 'center' }}> <ActivityIndicator size="large" color={'dodgerblue'} /> </Text>
+                            <Text style={{ marginVertical: 20, alignSelf: 'center' }}> <ActivityIndicator size="large" color={'#04574B'} /> </Text>
                         ) :
                         (
                             <FlatList
